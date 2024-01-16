@@ -40,6 +40,7 @@ describe("Product test case",()=>{
         productOBJ.EnterPostalCode(Productselect.PostalCode)
         productOBJ.EnterPhoneNumber(Productselect.PhoneNumber)
         productOBJ.clickNext()
+        productOBJ.clickCashonDelivery()
 
 
 

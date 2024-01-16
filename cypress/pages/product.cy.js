@@ -2,18 +2,18 @@ export class product {
     weblocators = {
 
         "NewArrical": "#ui-id-3 > span.mm-subcategory-title.underline-megamenu",
-       // "EnterCountry": 'form[name="country-selection"] [name="landing-currency"]',
-        "EnterCountry":'form[action="https://www.junaidjamshed.com/"] select[class="form-control"]',
-       // "EnterSubmitt": "[class='form-control jj-enter-btn']",
-         "EnterSubmitt":'[class="form-control jj-enter-btn"][type="submit"]',
+        // "EnterCountry": 'form[name="country-selection"] [name="landing-currency"]',
+        "EnterCountry": 'form[action="https://www.junaidjamshed.com/"] select[class="form-control"]',
+        // "EnterSubmitt": "[class='form-control jj-enter-btn']",
+        "EnterSubmitt": '[class="form-control jj-enter-btn"][type="submit"]',
         "DivMainCount": "#maincontent > div.columns > div > div.container-v15 > div.row.c-live > div.container-v15 > div > div",
         "productselect": "#maincontent > div.columns > div > div.container-v15 > div.row.c-live > div.container-v15 > div > div > div.col-sm-6.nopaddingleft",
         "ProductCount": ".products.list.items.product-items",
         //"Innerproduct": ".products.list.items.product-items > li.item.product.product-item",
         //"Innerproduct":"span[class='product-image-container product-image-container-361185'] span[class='product-image-wrapper']",
-        "Innerproduct":"#maincontent > div.columns > div.column.main > div.products.wrapper.grid.products-grid > ol > li:nth-child(1) > div > div.product.details.product-item-details > div.addtocart_position_3.left > form > button",
+        "Innerproduct": "#maincontent > div.columns > div.column.main > div.products.wrapper.grid.products-grid > ol > li:nth-child(1) > div > div.product.details.product-item-details > div.addtocart_position_3.left > form > button",
         "VerifyAmount": "span[data-bind='html: cart().subtotal_excl_tax'] span[class='price']",
-        "submitButton" : "div > #top-cart-btn-checkout",
+        "submitButton": "div > #top-cart-btn-checkout",
         //"done": "#top-cart-btn-checkout",
         "Email": "#customer-email",
         "Username": "[name='firstname']",
@@ -21,11 +21,12 @@ export class product {
         "streetAddress": '[name="street[0]"]',
         "dropdownCountry": '[name="country_id"]',
         "State": '[name="region"]',
-        //"City": '[name="city"]',
-        "City":'.admin__field-control select[name="city"]',
+        "City": 'select[name="city"]',
+        //"City":"div[class='admin__field _required'] div[class='admin__field-control']",
         "postalCode": "[name='postcode']",
         "phonenumber": "[name='telephone']",
-        "Next": "[data-role='opc-continue']",
+        "Next": "button[data-role='opc-continue']",
+        "Cash":"#cashondelivery"
         //  "VerifyQuantity": ".your-container-class input.item-qty.cart-item-qty[data-cart-item='99190518'][data-item-qty='1']",
 
 
@@ -86,22 +87,11 @@ export class product {
         })
     }
 
-//     clickInnerProduct() {
-//         cy.get('.products.list.items.product-items > li.item.product.product-item')
-//             .first()
-//             .scrollIntoView()
-//             .should('be.visible')
-//             .click({ force: true });
-// }
-
-
-
-
     clickinnerproduct() {
         cy.get(this.weblocators.Innerproduct)
             .scrollIntoView()     /////The scrollIntoView() method is used to scroll an element into the browser's viewport. It's often used when an element is not currently visible on the page, and you want to bring it into view before interacting with it.
             .should('be.visible')
-            .click({force:true});
+            .click({ force: true });
     }
 
     ProductAmount() {
@@ -112,13 +102,6 @@ export class product {
     clicksubmittbutton() {
         cy.get(this.weblocators.submitButton).should('be.visible').click()
     }
-
-
-    
-
-    // clickdone() {
-    //     cy.get(this.weblocators.done).click()
-    // }
 
     EnterEmail(ENEmail) {
         cy.get(this.weblocators.Email).type(ENEmail)
@@ -144,10 +127,27 @@ export class product {
         cy.get(this.weblocators.State).type(EState)
     }
 
-    EnterCity(ECity) {
-        cy.get(this.weblocators.City).select(ECity)
-    }
+    // EnterCity(ECity) {
+    //     cy.get(this.weblocators.City).select(ECity)
+    // }
 
+    EnterCity(ECity) {
+        cy.log(`Selecting city: ${ECity}`);
+      
+        // Select the option that contains the specified text
+        cy.get(this.weblocators.City).contains(ECity).then(($option) => {
+          // Get the value of the found option
+          const optionValue = $option.val();
+      
+          // Select the option by its value
+          cy.get(this.weblocators.City).select(optionValue);
+      
+          cy.log('After select');
+        });
+      }
+      
+      
+      
     EnterPostalCode(EpOSTAL) {
         cy.get(this.weblocators.postalCode).type(EpOSTAL)
     }
@@ -159,6 +159,17 @@ export class product {
     clickNext() {
         cy.get(this.weblocators.Next).click()
     }
+    
+    clickCashonDelivery()
+    {
+        cy.get(this.weblocators.Cash).check()
+    }
+
+
+
+
+
+
 
 
 
