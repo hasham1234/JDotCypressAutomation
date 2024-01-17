@@ -9,8 +9,6 @@ export class product {
         "DivMainCount": "#maincontent > div.columns > div > div.container-v15 > div.row.c-live > div.container-v15 > div > div",
         "productselect": "#maincontent > div.columns > div > div.container-v15 > div.row.c-live > div.container-v15 > div > div > div.col-sm-6.nopaddingleft",
         "ProductCount": ".products.list.items.product-items",
-        //"Innerproduct": ".products.list.items.product-items > li.item.product.product-item",
-        //"Innerproduct":"span[class='product-image-container product-image-container-361185'] span[class='product-image-wrapper']",
         "Innerproduct": "#maincontent > div.columns > div.column.main > div.products.wrapper.grid.products-grid > ol > li:nth-child(1) > div > div.product.details.product-item-details > div.addtocart_position_3.left > form > button",
         "VerifyAmount": "span[data-bind='html: cart().subtotal_excl_tax'] span[class='price']",
         "submitButton": "div > #top-cart-btn-checkout",
