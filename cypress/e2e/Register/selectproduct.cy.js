@@ -16,7 +16,6 @@ describe("Product test case",()=>{
         productOBJ.load()
         cy.wait(5000);
         productOBJ.SelectCountry('Pakistan')
-        
         productOBJ.ClickEnter()
         cy.wait(20000)
         productOBJ.clickNewArrival()
